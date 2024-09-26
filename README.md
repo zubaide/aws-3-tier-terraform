@@ -1,3 +1,5 @@
+# Terraform 3-tier architecture on AWS
+
 ![image](https://github.com/user-attachments/assets/bd7415d9-0212-4707-9c85-b3df8f86b9c8)
 
 
