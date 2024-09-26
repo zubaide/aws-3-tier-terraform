@@ -14,7 +14,7 @@
 8. Create RDS instance for the database
 9. Set up network access control lists (NACLs)
 
-_**Now, let's go through each step in more detail:**_
+## _**Now, let's go through each step in more detail:**_
 
 **Set up the AWS provider:**
   - Configure the AWS provider with your credentials and preferred region.
@@ -41,14 +41,14 @@ _**Now, let's go through each step in more detail:**_
   - Place the Bastion Host and Web Server in public subnets.
   - Place the App Server in a private subnet.
 
-**let me explain the purpose of each file and directory:**
+## **let me explain the purpose of each file and directory:**
 ```
-_main.tf:_ This is the primary configuration file where we'll call our modules and define the overall architecture.
-_variables.tf:_ We'll declare input variables here, which can be used across the entire configuration.
-_outputs.tf:_ We'll define output values here, such as public IP addresses or endpoint URLs.
-_providers.tf:_ This file will contain the provider configuration (AWS in our case).
-_modules/:_ This directory contains subdirectories for each component of our infrastructure.
-_terraform.tfvars: _This file is used to set values for the variables we've declared.
+main.tf: This is the primary configuration file where we'll call our modules and define the overall architecture.
+variables.tf: We'll declare input variables here, which can be used across the entire configuration.
+outputs.tf: We'll define output values here, such as public IP addresses or endpoint URLs.
+providers.tf: This file will contain the provider configuration (AWS in our case).
+modules/: This directory contains subdirectories for each component of our infrastructure.
+terraform.tfvars: This file is used to set values for the variables we've declared.
 ```
 Each module (vpc, security_groups, ec2, rds) has its own set of files:
 
@@ -56,7 +56,7 @@ _main.tf:_ Contains the main resource definitions for that module.
 _variables.tf:_ Declares input variables specific to that module.
 _outputs.tf:_ Defines output values from the module.
 
-This structure allows us to maintain a clean, organized codebase while still keeping related resources grouped together.
+## This structure allows us to maintain a clean, organized codebase while still keeping related resources grouped together.
 
 **Create RDS instance:**
   - Set up an RDS instance for the database in a private subnet.
@@ -64,3 +64,15 @@ This structure allows us to maintain a clean, organized codebase while still kee
 
 **Set up Network ACLs:**
   - Configure network access control lists for additional security at the subnet level.
+
+## This setup creates a Bastion Host, two Web Servers in the public subnets, and two App Servers in the private subnets, all with appropriate security groups.
+
+**To apply this configuration:**
+
+Run _terraform init_ to initialize the new modules.
+Run _terraform plan_ to see the changes that will be made.
+If the plan looks good, run _terraform apply_ to create the resources.
+
+Remember to create an EC2 key pair in your AWS account and provide its name when prompted for the key_name variable.
+
+![image](https://github.com/user-attachments/assets/1509853d-5408-496c-a0ec-827806e242d0)
